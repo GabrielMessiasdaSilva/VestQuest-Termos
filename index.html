@@ -593,7 +593,7 @@
       }
       bodyLines.push('', 'Por favor, confirmem o recebimento e informem o prazo estimado para conclusão.', '', 'Obrigado.');
 
-      var body = bodyLines.join('\\n');
+      var body = bodyLines.join('\n');
       // open mailto
       window.location.href = makeMailto(subj, body);
       closeModal();
@@ -695,5 +695,4 @@ function downloadRequestTemplate(format = 'pdf') {
   </script>
 </body>
 </html>
-
 
