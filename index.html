@@ -479,6 +479,7 @@
       </div>
     </div>
   </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script>
     // ---------- Accessibility: focus outline for keyboard users ----------
@@ -598,10 +599,17 @@
       closeModal();
     });
 
-    function validateEmail(email){
-      // simple regex
-      return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
-    }
+function validateEmail(email) {
+  // Regex que valida o formato básico e só aceita os domínios listados
+  const allowedDomains = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com'];
+  const re = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+  const match = email.match(re);
+  if (!match) return false;
+
+  const domain = match[1].toLowerCase();
+  return allowedDomains.includes(domain);
+}
+
 
     // trap focus inside modal (basic implementation)
     function trapFocus(e){
@@ -613,37 +621,56 @@
       }
     }
 
-    // ---------- Download template function ----------
-    function downloadRequestTemplate(){
-      var text = [
-        'Solicitação de Exclusão de Conta - VestQuest',
-        '',
-        'À VestQuest,',
-        '',
-        'Solicito a exclusão da minha conta e de todos os dados pessoais relacionados.',
-        '',
-        'E-mail cadastrado: ',
-        'Nome completo (opcional): ',
-        'Motivo (opcional): ',
-        '',
-        'Por favor, confirmem o recebimento e informem o prazo estimado para a conclusão.',
-        '',
-        'Atenciosamente,',
-        ''
-      ].join('\\n');
+function downloadRequestTemplate(format = 'pdf') {
+  const text = [
+    'Assunto: Solicitação de Exclusão de Conta - VestQuest',
+    '',
+    'À VestQuest,',
+    '',
+    'Solicito a exclusão da minha conta e de todos os dados pessoais relacionados.',
+    '',
+    'E-mail cadastrado: ',
+    'Nome completo (opcional): ',
+    'Motivo (opcional): ',
+    '',
+    'Por favor, confirmem o recebimento e informem o prazo estimado para a conclusão.',
+    '',
+    'Atenciosamente,[seu nome]',
+    ''
+  ].join('\n');
 
-      var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'solicitacao_exclusao_vestquest.txt';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function(){
-        URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      }, 300);
-    }
+  if(format === 'pdf') {
+    // Gera PDF com jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 10, 10);
+    doc.save('solicitacao_exclusao_vestquest.pdf');
+  }
+  else if(format === 'pdf') {
+    // Criar um arquivo simples .docx (texto simples renomeado, não complexo)
+    // Como fazer um docx real é complexo sem libs, vamos criar um arquivo de texto simples com extensão .docx
+    const blob = new Blob([text], {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'solicitacao_exclusao_vestquest.docx';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }, 300);
+  }
+  else {
+    alert('Formato não suportado. Use "docx" ou "pdf".');
+  }
+}
+
+// Exemplo de uso:
+// downloadRequestTemplate('pdf');
+// downloadRequestTemplate('docx');
 
     // expose downloadRequestTemplate for inline onclick usage
     window.downloadRequestTemplate = downloadRequestTemplate;
