@@ -1,85 +1,670 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Política de Privacidade - VestQuest</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Política de Privacidade — VestQuest</title>
+  <meta name="description" content="Política de Privacidade da VestQuest — informações sobre coleta, uso, compartilhamento, direitos do usuário e como excluir a conta." />
+  <meta name="author" content="VestQuest" />
+  <meta name="theme-color" content="#003366" />
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --accent:#003366;
+      --accent-2:#0055a5;
+      --muted:#666;
+      --danger:#d9534f;
+      --radius:12px;
+      --maxw:1100px;
+      font-size:16px;
     }
 
-    header {
-      background-color: #003366;
-      color: #fff;
-      text-align: center;
-      padding: 20px 0;
+    /* Reset minimal */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#eef3fb 120%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      padding:28px;
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 2.5rem;
+    /* Container */
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap:28px;
+      align-items:start;
     }
 
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: 20px auto;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Sidebar / TOC */
+    aside{
+      position:sticky;
+      top:28px;
+      align-self:start;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 6px 20px rgba(12,20,40,0.08);
+      height:fit-content;
     }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1.2em;
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom:16px;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:700;
+      font-size:20px;
+      box-shadow:0 6px 18px rgba(0,85,165,0.15);
+    }
+    .brand h3{margin:0;font-size:1.05rem}
+    .brand p{margin:0;font-size:.85rem;color:var(--muted)}
+
+    nav a{
+      display:block;
+      color:var(--accent-2);
+      text-decoration:none;
+      padding:8px 6px;
+      border-radius:8px;
+      margin:3px 0;
+      font-size:.95rem;
+    }
+    nav a:hover,
+    nav a:focus{background:#f0f6ff}
+
+    /* Main card */
+    main.card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:0 10px 30px rgba(12,20,40,0.06);
+    }
+    header.hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    header.hero h1{
+      margin:0;
+      font-size:1.6rem;
+      color:var(--accent);
+    }
+    header.hero p{margin:4px 0 0;color:var(--muted)}
+
+    .meta{
+      text-align:right;
+      font-size:.9rem;
+      color:var(--muted);
     }
 
-    .link-exclusao {
-      font-size: 1rem;
-      color: #d9534f;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
+    /* sections */
+    section{
+      margin-top:20px;
+      padding-top:12px;
+      border-top:1px solid #eef2f6;
     }
 
-    .link-exclusao:hover {
-      text-decoration: underline;
+    section h2{
+      margin:6px 0 12px;
+      font-size:1.05rem;
+      color:var(--accent);
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #003366;
-      color: #fff;
-      font-size: 0.9rem;
+    .lead{color:#333;margin-bottom:10px}
+
+    ul{margin-left:18px}
+
+    .muted{color:var(--muted);font-size:.95rem}
+
+    /* Accordion for details */
+    .accordion .item{border:1px solid #f0f3f7;border-radius:10px;margin-bottom:10px;overflow:hidden}
+    .accordion button{
+      width:100%;
+      background:transparent;
+      border:0;
+      padding:14px 16px;
+      text-align:left;
+      cursor:pointer;
+      font-weight:600;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
+    .accordion button:focus{outline:3px solid rgba(0,85,165,0.12)}
+    .accordion .panel{padding:0 16px 16px;display:none;color:#333;font-size:.96rem}
+    .accordion .panel p{margin:10px 0}
+
+    /* Actions */
+    .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 16px;
+      border-radius:10px;
+      text-decoration:none;
+      cursor:pointer;
+      border:1px solid transparent;
+      font-weight:600;
+      font-size:.98rem;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+      box-shadow:0 8px 22px rgba(0,85,165,0.12);
+    }
+    .btn-outline{
+      background:transparent;
+      color:var(--accent);
+      border-color:#e6eefb;
+    }
+    .btn-danger{
+      background:var(--danger);
+      color:#fff;
+    }
+
+    /* Footer small */
+    footer.small{
+      margin-top:22px;
+      font-size:.92rem;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    footer.small a{color:var(--accent-2);text-decoration:none}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,12,24,0.45);z-index:1200;
+    }
+    .modal{
+      width:100%;max-width:720px;background:var(--card);border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(12,20,40,0.5);
+    }
+    .modal h3{margin:0 0 8px}
+    .modal p{margin:0 0 14px}
+    .modal .row{display:flex;gap:12px;flex-wrap:wrap}
+    .field{flex:1;min-width:220px}
+    input, textarea{
+      width:100%;
+      padding:10px 12px;border-radius:8px;border:1px solid #e6eefb;background:#fbfdff;
+      font-size:.95rem;
+    }
+    label{display:block;font-size:.9rem;margin-bottom:6px;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr; padding-bottom:80px}
+      aside{position:static}
+      header.hero{flex-direction:column;align-items:flex-start}
+      .meta{text-align:left}
+    }
+
+    /* print */
+    @media print{
+      body{padding:0}
+      .wrap{grid-template-columns:1fr}
+      aside, .actions, .modal-backdrop, footer.small{display:none}
+      main.card{box-shadow:none;border-radius:0}
+    }
+
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Política de Privacidade</h1>
-  </header>
+  <div class="wrap" role="main">
+    <!-- SIDEBAR / TOC -->
+    <aside aria-label="Navegação da Política de Privacidade">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">VQ</div>
+        <div>
+          <h3>VestQuest</h3>
+          <p class="muted">Política de Privacidade</p>
+        </div>
+      </div>
 
-  <main>
-    <p>Esta é a política de privacidade do aplicativo VestQuest.</p>
-    <p>Coletamos apenas dados necessários para autenticação e uso do app, seguindo as normas de segurança e privacidade.</p>
-    <p>Não compartilhamos seus dados com terceiros.</p>
-    <p>Se você tiver dúvidas, entre em contato conosco.</p>
-    
-    <a href="exclusao_conta.html" class="link-exclusao">Clique aqui para excluir sua conta</a>
-  </main>
+      <nav>
+        <strong class="muted">Índice</strong>
+        <a href="#introducao">1. Introdução</a>
+        <a href="#dados-coletados">2. Quais dados coletamos</a>
+        <a href="#uso-dados">3. Como usamos os dados</a>
+        <a href="#compartilhamento">4. Compartilhamento e terceiros</a>
+        <a href="#seguranca">5. Segurança</a>
+        <a href="#retencao">6. Retenção</a>
+        <a href="#direitos">7. Seus direitos</a>
+        <a href="#menores">8. Menores de idade</a>
+        <a href="#cookies">9. Cookies e rastreamento</a>
+        <a href="#exclusao">10. Exclusão de Conta</a>
+        <a href="#contato">11. Contato</a>
+        <a href="#alteracoes">12. Alterações nesta política</a>
+      </nav>
 
-  <footer>
-    <p>&copy; 2025 VestQuest. Todos os direitos reservados.</p>
-  </footer>
+      <hr style="margin:14px 0;border:none;height:1px;background:#f0f3f7" />
 
+      <div style="font-size:.92rem;color:var(--muted)">
+        <p><strong>Última atualização:</strong> 08 de agosto de 2025</p>
+        <p>Se preferir, imprima esta página para arquivar uma cópia.</p>
+        <p style="margin-top:8px">
+          <a href="#" onclick="window.print();return false" class="btn btn-outline" style="padding:8px 10px">Imprimir</a>
+        </p>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="card" id="main-content">
+      <header class="hero" aria-labelledby="titulo">
+        <div>
+          <h1 id="titulo">Política de Privacidade da VestQuest</h1>
+          <p class="muted">Esta política explica como coletamos, usamos e protegemos os seus dados.</p>
+        </div>
+        <div class="meta">
+          <div>Última atualização: <strong>08/08/2025</strong></div>
+          <div style="margin-top:6px"><a href="#contato" class="muted">Fale conosco</a></div>
+        </div>
+      </header>
+
+      <section id="introducao" aria-labelledby="s-intro">
+        <h2 id="s-intro">1. Introdução</h2>
+        <p class="lead">A VestQuest ("nós", "nosso", "VestQuest") valoriza sua privacidade. Nosso objetivo é ser transparente sobre os dados que coletamos, por que os usamos e como você pode controlar essas informações.</p>
+        <p class="muted">Esta política aplica-se a todos os produtos, serviços, sites e aplicativos fornecidos pela VestQuest, salvo indicação em contrário.</p>
+      </section>
+
+      <section id="dados-coletados" aria-labelledby="s-dados">
+        <h2 id="s-dados">2. Quais dados coletamos</h2>
+        <p>Coletamos diferentes tipos de informações dependendo de como você usa nossos serviços:</p>
+
+        <div class="accordion" id="accordion-data">
+          <div class="item">
+            <button aria-expanded="false" aria-controls="pessoal">Dados pessoais (identificação)</button>
+            <div id="pessoal" class="panel" hidden>
+              <p>Exemplos: nome, e-mail, número de telefone (quando fornecido), foto de perfil e dados de pagamento quando você realizar compras. Esses dados são essenciais para criar e gerenciar sua conta.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <button aria-expanded="false" aria-controls="uso">Dados de uso e conteúdo</button>
+            <div id="uso" class="panel" hidden>
+              <p>Exemplos: progresso no aplicativo, configurações, atividades, interações com conteúdo, mensagens (quando aplicável) e qualquer conteúdo gerado por você.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <button aria-expanded="false" aria-controls="tecnico">Dados técnicos e de diagnóstico</button>
+            <div id="tecnico" class="panel" hidden>
+              <p>Exemplos: endereço IP, tipo de dispositivo, identificadores do dispositivo, sistema operacional, dados de performance e logs de erros para melhorar estabilidade e segurança.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <button aria-expanded="false" aria-controls="marketing">Dados de marketing & analytics</button>
+            <div id="marketing" class="panel" hidden>
+              <p>Incluem dados anônimos ou pseudonimizados coletados por ferramentas de análise, métricas de uso e, quando autorizado, preferências para anúncios personalizados.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="uso-dados" aria-labelledby="s-uso">
+        <h2 id="s-uso">3. Como usamos os dados</h2>
+        <p>Usamos suas informações para fins claros e específicos, entre eles:</p>
+        <ul>
+          <li><strong>Fornecer e operar</strong> o serviço (autenticação, sincronização de progresso, suporte).</li>
+          <li><strong>Melhorar a experiência:</strong> personalização, recomendações, testes A/B e ajustes de produto.</li>
+          <li><strong>Segurança:</strong> prevenção de fraudes, investigação de incidentes e manutenção da integridade da plataforma.</li>
+          <li><strong>Comunicação:</strong> notificações importantes sobre a conta, atualizações de serviço e suporte técnico.</li>
+          <li><strong>Marketing (quando autorizado):</strong> enviar comunicações promocionais e anúncios relevantes.</li>
+        </ul>
+      </section>
+
+      <section id="compartilhamento" aria-labelledby="s-compart">
+        <h2 id="s-compart">4. Compartilhamento e terceiros</h2>
+        <p>Não vendemos seus dados pessoais. Podemos compartilhar dados nas seguintes situações:</p>
+        <ul>
+          <li><strong>Prestadores de serviço:</strong> empresas que fornecem hospedagem, análise, envio de e-mail, processamento de pagamentos e outros serviços operacionais.</li>
+          <li><strong>Parceiros:</strong> quando você optar por conectar contas ou usar serviços integrados de terceiros.</li>
+          <li><strong>Requisitos legais:</strong> quando exigido por lei, ordem judicial ou para proteger direitos legais e segurança pública.</li>
+          <li><strong>Transferências comerciais:</strong> no contexto de fusões, compra/venda de ativos ou reorganizações (com obrigações contratuais de proteção).</li>
+        </ul>
+
+        <p class="muted">Exigimos que todos os prestadores cumpram padrões de segurança e utilizem dados apenas para os fins contratados por nós.</p>
+      </section>
+
+      <section id="seguranca" aria-labelledby="s-seguranca">
+        <h2 id="s-seguranca">5. Segurança</h2>
+        <p>Adotamos medidas técnicas e administrativas para proteger seus dados — por exemplo, criptografia em trânsito, controles de acesso e monitoramento. Contudo, nenhuma medida elimina totalmente o risco; por isso recomendamos usar senhas fortes e manter seu software atualizado.</p>
+      </section>
+
+      <section id="retencao" aria-labelledby="s-retencao">
+        <h2 id="s-retencao">6. Retenção de dados</h2>
+        <p>Reteremos dados pelo tempo necessário para cumprir as finalidades descritas nesta política, ou conforme exigido por lei. Quando os dados não forem mais necessários, os excluiremos ou tornaremos anônimos.</p>
+      </section>
+
+      <section id="direitos" aria-labelledby="s-direitos">
+        <h2 id="s-direitos">7. Seus direitos como titular</h2>
+        <p>Dependendo da sua jurisdição, você pode ter direitos, tais como:</p>
+        <ul>
+          <li>Acessar os seus dados pessoais</li>
+          <li>Corrigir ou atualizar informações</li>
+          <li>Solicitar a portabilidade dos dados</li>
+          <li>Solicitar a exclusão ("direito ao esquecimento")</li>
+          <li>Retirar consentimento para processamento de marketing</li>
+          <li>Apresentar reclamação junto à autoridade de proteção de dados aplicável</li>
+        </ul>
+
+        <p>Para exercer qualquer direito, entre em contato com nosso time (ver seção <a href="#contato">11 — Contato</a>). Responderemos dentro de prazo razoável e, quando aplicável, conforme exigido por lei.</p>
+      </section>
+
+      <section id="menores" aria-labelledby="s-menores">
+        <h2 id="s-menores">8. Menores de idade</h2>
+        <p>Nós não coletamos intencionalmente dados pessoais de crianças menores de 13 anos (ou idade equivalente em sua jurisdição). Se você acredita que dados de uma criança foram coletados sem consentimento dos pais, entre em contato conosco para que possamos avaliar e tomar as medidas apropriadas.</p>
+      </section>
+
+      <section id="cookies" aria-labelledby="s-cookies">
+        <h2 id="s-cookies">9. Cookies e tecnologia de rastreamento</h2>
+        <p>Usamos cookies e tecnologias similares para operar o site, lembrar preferências, medir performance e entregar conteúdos relevantes. Você pode controlar cookies pelas configurações do navegador; note que desabilitar cookies pode afetar algumas funcionalidades.</p>
+      </section>
+
+      <section id="exclusao" aria-labelledby="s-excl">
+        <h2 id="s-excl">10. Exclusão de Conta</h2>
+        <p class="lead">Se você deseja excluir sua conta e/ou solicitar que todos os dados pessoais relacionados sejam removidos, oferecemos duas opções abaixo.</p>
+
+        <div class="actions" aria-hidden="false">
+          <!-- opens mail client with prefilled message -->
+          <a id="mailto-delete" class="btn btn-outline" href="#" title="Enviar solicitação por e-mail">Solicitar exclusão por e-mail</a>
+
+          <!-- open modal with confirmation & instructions -->
+          <button class="btn btn-primary" id="open-delete-modal">Solicitar exclusão (formulário)</button>
+
+          <!-- sample: link to privacy policy download -->
+          <a class="btn" href="#" onclick="downloadRequestTemplate();return false">Baixar modelo de solicitação</a>
+        </div>
+
+        <p class="muted" style="margin-top:10px">Ao solicitar exclusão, processamos sua solicitação e confirmamos por e-mail o status. Em alguns casos (por exemplo, quando há obrigações legais ou transações pendentes) poderemos reter informações por período limitado, com justificativa.</p>
+      </section>
+
+      <section id="contato" aria-labelledby="s-contact">
+        <h2 id="s-contact">11. Contato</h2>
+        <p>Para exercer direitos, dúvidas ou solicitações relacionadas a dados pessoais, por favor entre em contato:</p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+          <div style="min-width:240px">
+            <strong>E-mail</strong>
+            <p class="muted">VestQuest@gmail.com</p>
+          </div>
+          <div style="min-width:240px">
+            <strong>Assunto padrão</strong>
+            <p class="muted">Ex.: "Solicitação de Exclusão de Conta" ou "Acesso a Dados Pessoais"</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="alteracoes" aria-labelledby="s-alter">
+        <h2 id="s-alter">12. Alterações nesta política</h2>
+        <p>Atualizaremos esta política quando houver mudanças relevantes na forma como tratamos dados. Sempre indicamos a data da última atualização. Recomendamos revisar esta página periodicamente.</p>
+
+        <div style="margin-top:12px" class="muted">
+          <strong>Resumo das principais práticas</strong>
+          <ul>
+            <li>Coletamos apenas o necessário para operar e melhorar o serviço.</li>
+            <li>Não vendemos dados pessoais.</li>
+            <li>Oferecemos meios para acessar, corrigir e excluir seus dados.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="small" aria-hidden="false">
+        <div>&copy; 2025 VestQuest. Todos os direitos reservados.</div>
+        <div>Política criada e mantida pela equipe VestQuest • <a href="#introducao">Voltar ao topo</a></div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- MODAL: Exclusão de Conta -->
+  <div id="modal-backdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modal-title">
+      <h3 id="modal-title">Solicitação de Exclusão de Conta</h3>
+      <p>Preencha o formulário abaixo para gerar um e-mail pronto para enviar. Após o envio receberá confirmação por e-mail do nosso time.</p>
+
+      <div class="row" style="margin-top:12px">
+        <div class="field">
+          <label for="input-name">Nome completo</label>
+          <input id="input-name" type="text" placeholder="Seu nome" />
+        </div>
+        <div class="field">
+          <label for="input-email">E-mail cadastrado</label>
+          <input id="input-email" type="email" placeholder="seu@email.com" />
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label for="input-reason">Motivo (opcional)</label>
+        <textarea id="input-reason" rows="4" placeholder="Se desejar, informe o motivo da exclusão"></textarea>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px">
+        <button class="btn btn-outline" id="cancel-modal">Cancelar</button>
+        <button class="btn btn-danger" id="send-delete-email">Gerar e-mail e abrir no seu cliente</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Accessibility: focus outline for keyboard users ----------
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab'){ document.body.classList.add('user-is-tabbing'); window.removeEventListener('keydown', handleFirstTab); }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+
+    // ---------- Accordion behavior ----------
+    document.querySelectorAll('.accordion .item button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        // close all in same accordion
+        var parent = btn.closest('.accordion');
+        parent.querySelectorAll('button').forEach(function(b){
+          b.setAttribute('aria-expanded','false');
+          var p = document.getElementById(b.getAttribute('aria-controls'));
+          if(p){ p.style.display='none'; p.hidden = true; }
+        });
+        if(!expanded){
+          btn.setAttribute('aria-expanded','true');
+          var panel = document.getElementById(btn.getAttribute('aria-controls'));
+          if(panel){ panel.style.display='block'; panel.hidden = false; }
+        }
+      });
+    });
+
+    // ---------- Mailto for quick delete link ----------
+    function makeMailto(subject, body){
+      return 'mailto:VestQuest@gmail.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+    }
+
+    var quickLink = document.getElementById('mailto-delete');
+    quickLink.addEventListener('click', function(e){
+      e.preventDefault();
+      var subj = 'Solicitação de Exclusão de Conta - VestQuest';
+      var body = [
+        'Olá VestQuest,',
+        '',
+        'Gostaria de solicitar a EXCLUSÃO da minha conta e todos os dados pessoais relacionados.',
+        '',
+        'E-mail cadastrado: [INSIRA SEU E-MAIL]',
+        'Nome completo (opcional): [INSIRA SEU NOME]',
+        '',
+        'Motivo (opcional):',
+        '',
+        'Por favor, confirmem o recebimento e me informem o prazo estimado para conclusão.',
+        '',
+        'Obrigado.'
+      ].join('\\n');
+      window.location.href = makeMailto(subj, body);
+    });
+
+    // ---------- Modal behavior ----------
+    var backdrop = document.getElementById('modal-backdrop');
+    var openBtn = document.getElementById('open-delete-modal');
+    var cancelBtn = document.getElementById('cancel-modal');
+    var sendBtn = document.getElementById('send-delete-email');
+    var inputName = document.getElementById('input-name');
+    var inputEmail = document.getElementById('input-email');
+    var inputReason = document.getElementById('input-reason');
+
+    openBtn.addEventListener('click', function(){
+      backdrop.style.display = 'flex';
+      backdrop.setAttribute('aria-hidden','false');
+      // set focus
+      inputEmail.focus();
+      // trap focus (simple)
+      document.addEventListener('focus',trapFocus,true);
+    });
+
+    function closeModal(){
+      backdrop.style.display = 'none';
+      backdrop.setAttribute('aria-hidden','true');
+      document.removeEventListener('focus',trapFocus,true);
+      openBtn.focus();
+    }
+    cancelBtn.addEventListener('click', closeModal);
+
+    // clicking outside modal closes
+    backdrop.addEventListener('click', function(e){
+      if(e.target === backdrop) closeModal();
+    });
+
+    // send button: validate minimal
+    sendBtn.addEventListener('click', function(){
+      var email = inputEmail.value.trim();
+      if(!email || !validateEmail(email)){
+        alert('Por favor informe um e-mail válido (o e-mail cadastrado).');
+        inputEmail.focus();
+        return;
+      }
+      var name = inputName.value.trim();
+      var reason = inputReason.value.trim();
+
+      var subj = 'Solicitação de Exclusão de Conta - VestQuest';
+      var bodyLines = [
+        'Olá VestQuest,',
+        '',
+        'Solicito a EXCLUSÃO da minha conta e todos os dados pessoais relacionados.',
+        '',
+        'E-mail cadastrado: ' + email
+      ];
+      if(name) bodyLines.push('Nome completo: ' + name);
+      if(reason){
+        bodyLines.push('', 'Motivo:', reason);
+      }
+      bodyLines.push('', 'Por favor, confirmem o recebimento e informem o prazo estimado para conclusão.', '', 'Obrigado.');
+
+      var body = bodyLines.join('\\n');
+      // open mailto
+      window.location.href = makeMailto(subj, body);
+      closeModal();
+    });
+
+    function validateEmail(email){
+      // simple regex
+      return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+    }
+
+    // trap focus inside modal (basic implementation)
+    function trapFocus(e){
+      var modal = document.querySelector('.modal');
+      if(!modal) return;
+      if(!modal.contains(e.target)) {
+        e.stopPropagation();
+        modal.focus();
+      }
+    }
+
+    // ---------- Download template function ----------
+    function downloadRequestTemplate(){
+      var text = [
+        'Solicitação de Exclusão de Conta - VestQuest',
+        '',
+        'À VestQuest,',
+        '',
+        'Solicito a exclusão da minha conta e de todos os dados pessoais relacionados.',
+        '',
+        'E-mail cadastrado: ',
+        'Nome completo (opcional): ',
+        'Motivo (opcional): ',
+        '',
+        'Por favor, confirmem o recebimento e informem o prazo estimado para a conclusão.',
+        '',
+        'Atenciosamente,',
+        ''
+      ].join('\\n');
+
+      var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'solicitacao_exclusao_vestquest.txt';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }, 300);
+    }
+
+    // expose downloadRequestTemplate for inline onclick usage
+    window.downloadRequestTemplate = downloadRequestTemplate;
+
+    // ---------- Smooth anchor scroll ----------
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var href = a.getAttribute('href');
+        if(href === '#') return;
+        var target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Keyboard: Escape to close modal
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
+    });
+  </script>
 </body>
 </html>
